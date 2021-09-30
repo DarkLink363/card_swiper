@@ -394,6 +394,9 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   }
 
   double? _calcCurrentPixels() {
+    if (!_pageController!.hasClients) {
+      return 0;
+    }
     _currentPixels =
         _pageController!.getRenderIndexFromRealIndex(_activeIndex)! *
             _pageController!.position.viewportDimension *
