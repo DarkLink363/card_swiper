@@ -511,15 +511,17 @@ class _TransformerPageViewState extends State<TransformerPageView> {
                 : widget.transformer!.reverse);
       }
     }
-
-    if (_pageController!.getRenderIndexFromRealIndex(_activeIndex) != index) {
-      _fromIndex = _activeIndex = _pageController!.initialPage;
-      if (!created) {
-        final initPage = _pageController!.getRealIndexFromRenderIndex(index)!;
-        _pageController!.animateToPage(initPage,
-            duration: widget.duration, curve: widget.curve);
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (_pageController!.getRenderIndexFromRealIndex(_activeIndex) != index) {
+        _fromIndex = _activeIndex = _pageController!.initialPage;
+        if (!created) {
+          final initPage = _pageController!.getRealIndexFromRenderIndex(index)!;
+          _pageController!.animateToPage(initPage,
+              duration: widget.duration, curve: widget.curve);
+        }
       }
-    }
+    });
+
     if (_transformer != null) {
       WidgetsBinding.instance!.addPostFrameCallback(_onGetSize);
     }
