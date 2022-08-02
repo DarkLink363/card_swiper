@@ -511,7 +511,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
                 : widget.transformer!.reverse);
       }
     }
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_pageController!.getRenderIndexFromRealIndex(_activeIndex) != index) {
         _fromIndex = _activeIndex = _pageController!.initialPage;
         if (!created) {
@@ -523,7 +523,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
     });
 
     if (_transformer != null) {
-      WidgetsBinding.instance!.addPostFrameCallback(_onGetSize);
+      WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
     }
 
     if (_controller != getNotifier()) {
@@ -541,7 +541,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   @override
   void didChangeDependencies() {
     if (_transformer != null) {
-      WidgetsBinding.instance!.addPostFrameCallback(_onGetSize);
+      WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
     }
     super.didChangeDependencies();
   }
